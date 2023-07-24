@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Y4fDkQsBI5isjKGCcR8mchEvBybOXmKbUheO35gU6XQ=",
+  "Source": "DockerizedNetPostgresApi",
+  "BasePath": "_content/DockerizedNetPostgresApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

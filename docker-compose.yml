@@ -1,0 +1,40 @@
+version: '3.4'
+
+networks:
+  dev:
+    driver: bridge
+
+services:
+  net-api-dockerized:
+    image: docker.io/library/net-api-dockerized
+    depends_on:
+      - "baza_aplikacija"
+    container_name: net-api-dockerized-container
+    ports:
+      - 8088:80
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=baza_aplikacija;User ID=admin;Password=admin;Port=5432;Database=novaBaza;IntegratedSecurity=true;Pooling=true;
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - dev 
+  
+  baza_aplikacija:
+    image: postgres:latest
+    container_name: baza_aplikacija
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=novaBaza
+    ports:
+      - 5433:5432
+    restart: always
+    volumes:
+      - podaci:/var/lib/postgresql/data
+    networks:
+      - dev
+
+volumes:
+  podaci:
